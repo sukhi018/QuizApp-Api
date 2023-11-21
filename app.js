@@ -25,7 +25,7 @@ app.use(cors({
 app.use('/api/v1/auth',authRouter)
 app.post('/api/v1/changePassword',authCheck,changePassword)
 
-router.get('/api/v1/questions',getQuestions)
+app.get('/api/v1/questions',getQuestions)
 
 app.use('/api/v1/data',authCheck,dataRouter)
 app.get('/', (req, res) => {
