@@ -8,7 +8,7 @@ const dbConnect = require('./db/connect')
 const authRouter = require('./routes/auth')
 const dataRouter = require('./routes/data')
 const authCheck = require('./middleware/authentication')
-
+const {getQuestions} = require('./controllers/data')
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
@@ -21,11 +21,11 @@ app.use(cors({
 
 // routes
 
+
 app.use('/api/v1/auth',authRouter)
 app.post('/api/v1/changePassword',authCheck,changePassword)
-app.post('/api/v1/checkValid',authCheck,(req,res)=>{
-  res.send({success:true})
-})
+
+router.get('/api/v1/questions',getQuestions)
 
 app.use('/api/v1/data',authCheck,dataRouter)
 app.get('/', (req, res) => {
